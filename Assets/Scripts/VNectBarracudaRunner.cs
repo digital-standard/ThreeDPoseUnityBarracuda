@@ -40,9 +40,15 @@ public class VNectBarracudaRunner : MonoBehaviour
     public int InputImageSize;
 
     /// <summary>
+    /// input image size (half)
+    /// </summary>
+    private float InputImageSizeHalf;
+
+    /// <summary>
     /// column number of heatmap
     /// </summary>
     public int HeatMapCol;
+    private float InputImageSizeF;
 
     /// <summary>
     /// Column number of heatmap in 2D image
@@ -87,26 +93,62 @@ public class VNectBarracudaRunner : MonoBehaviour
     private int JointNum_Cube = JointNum * 3;
 
     /// <summary>
+    /// HeatMapCol * JointNum
+    /// </summary>
+    private int HeatMapCol_JointNum;
+
+    /// <summary>
+    /// HeatMapCol * JointNum_Squared
+    /// </summary>
+    private int CubeOffsetLinear;
+
+    /// <summary>
+    /// HeatMapCol * JointNum_Cube
+    /// </summary>
+    private int CubeOffsetSquared;
+
+    /// <summary>
+    /// For Kalman filter parameter Q
+    /// </summary>
+    public float KalmanParamQ;
+
+    /// <summary>
+    /// For Kalman filter parameter R
+    /// </summary>
+    public float KalmanParamR;
+
+    /// <summary>
     /// Lock to update VNectModel
     /// </summary>
     private bool Lock = true;
 
     /// <summary>
+    /// Use low pass filter flag
+    /// </summary>
+    public bool UseLowPassFilter;
+
+    /// <summary>
     /// For low pass filter
     /// </summary>
-    public float Smooth;
+    public float LowPassParam;
 
     private void Start()
     {
         // Initialize 
         HeatMapCol_Squared = HeatMapCol * HeatMapCol;
         HeatMapCol_Cube = HeatMapCol * HeatMapCol * HeatMapCol;
+        HeatMapCol_JointNum = HeatMapCol * JointNum;
+        CubeOffsetLinear = HeatMapCol * JointNum_Cube;
+        CubeOffsetSquared = HeatMapCol_Squared * JointNum_Cube;
+
         heatMap2D = new float[JointNum * HeatMapCol_Squared];
         offset2D = new float[JointNum * HeatMapCol_Squared * 2];
         heatMap3D = new float[JointNum * HeatMapCol_Cube];
         offset3D = new float[JointNum * HeatMapCol_Cube * 3];
-        ImageScale = 224f / (float)InputImageSize;
         unit = 1f / (float)HeatMapCol;
+        InputImageSizeF = InputImageSize;
+        InputImageSizeHalf = InputImageSizeF / 2f;
+        ImageScale = InputImageSize / (float)HeatMapCol;// 224f / (float)InputImageSize;
 
         // Disabel sleep
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -177,7 +219,7 @@ public class VNectBarracudaRunner : MonoBehaviour
         // Get data from outputs
         offset3D = b_outputs[2].data.Download(b_outputs[2].data.GetMaxCount());
         heatMap3D = b_outputs[3].data.Download(b_outputs[3].data.GetMaxCount());
-        /**/
+        
         // Release outputs
         for (var i = 2; i < b_outputs.Length; i++)
         {
@@ -192,21 +234,22 @@ public class VNectBarracudaRunner : MonoBehaviour
     /// </summary>
     private void PredictPose()
     {
-        var cubeOffsetLinear = HeatMapCol * JointNum_Cube;
-        var cubeOffsetSquared = HeatMapCol_Squared * JointNum_Cube;
         for (var j = 0; j < JointNum; j++)
         {
             var maxXIndex = 0;
             var maxYIndex = 0;
             var maxZIndex = 0;
             jointPoints[j].score3D = 0.0f;
+            var jj = j * HeatMapCol;
             for (var z = 0; z < HeatMapCol; z++)
             {
+                var zz = jj + z;
                 for (var y = 0; y < HeatMapCol; y++)
                 {
+                    var yy = y * HeatMapCol_Squared * JointNum + zz;
                     for (var x = 0; x < HeatMapCol; x++)
                     {
-                        float v = heatMap3D[y * HeatMapCol_Squared * JointNum + x * HeatMapCol * JointNum + j * HeatMapCol + z];
+                        float v = heatMap3D[yy + x * HeatMapCol_JointNum];
                         if (v > jointPoints[j].score3D)
                         {
                             jointPoints[j].score3D = v;
@@ -218,9 +261,9 @@ public class VNectBarracudaRunner : MonoBehaviour
                 }
             }
            
-            jointPoints[j].Now3D.x = ((offset3D[maxYIndex * cubeOffsetSquared + maxXIndex * cubeOffsetLinear + j * HeatMapCol + maxZIndex] * 0.5f + 0.5f + (float)maxXIndex) / (float)HeatMapCol) * (float)InputImageSize;
-            jointPoints[j].Now3D.y = (float)InputImageSize - ((offset3D[maxYIndex * cubeOffsetSquared + maxXIndex * cubeOffsetLinear + (j + JointNum) * HeatMapCol + maxZIndex] * 0.5f + 0.5f + (float)maxYIndex) / (float)HeatMapCol) * (float)InputImageSize;
-            jointPoints[j].Now3D.z = ((offset3D[maxYIndex * cubeOffsetSquared + maxXIndex * cubeOffsetLinear + (j + JointNum_Squared) * HeatMapCol + maxZIndex] * 0.5f + 0.5f + (float)(maxZIndex - 14)) / (float)HeatMapCol) * (float)InputImageSize;
+            jointPoints[j].Now3D.x = (offset3D[maxYIndex * CubeOffsetSquared + maxXIndex * CubeOffsetLinear + j * HeatMapCol + maxZIndex] + 0.5f + (float)maxXIndex) * ImageScale - InputImageSizeHalf;
+            jointPoints[j].Now3D.y = InputImageSizeHalf - (offset3D[maxYIndex * CubeOffsetSquared + maxXIndex * CubeOffsetLinear + (j + JointNum) * HeatMapCol + maxZIndex] + 0.5f + (float)maxYIndex) * ImageScale;
+            jointPoints[j].Now3D.z = (offset3D[maxYIndex * CubeOffsetSquared + maxXIndex * CubeOffsetLinear + (j + JointNum_Squared) * HeatMapCol + maxZIndex] + 0.5f + (float)(maxZIndex - 14)) * ImageScale;
         }
 
         // Calculate hip location
@@ -240,16 +283,21 @@ public class VNectBarracudaRunner : MonoBehaviour
         // Calculate spine location
         jointPoints[PositionIndex.spine.Int()].Now3D = jointPoints[PositionIndex.abdomenUpper.Int()].Now3D;
 
-        // Low pass filter
+        // Kalman filter
         foreach (var jp in jointPoints)
         {
-            jp.Now3D *= ImageScale;
-
-            jp.Pos3D = jp.PrevPos3D * Smooth + jp.Now3D * (1f - Smooth);
-            jp.PrevPos3D = jp.Pos3D;
             KalmanUpdate(jp);
         }
-        VNectModel.IsPoseUpdate = true;
+
+        // Low pass filter
+        if (UseLowPassFilter)
+        {
+            foreach (var jp in jointPoints)
+            {
+                jp.Pos3D = jp.PrevPos3D * LowPassParam + jp.Pos3D * (1f - LowPassParam);
+                jp.PrevPos3D = jp.Pos3D;
+            }
+        }
     }
 
     /// <summary>
@@ -267,11 +315,11 @@ public class VNectBarracudaRunner : MonoBehaviour
 
 	void measurementUpdate(VNectModel.JointPoint measurement)
     {
-        measurement.K.x = (measurement.P.x + VNectModel.JointPoint.Q) / (measurement.P.x + VNectModel.JointPoint.Q + VNectModel.JointPoint.R);
-        measurement.K.y = (measurement.P.y + VNectModel.JointPoint.Q) / (measurement.P.y + VNectModel.JointPoint.Q + VNectModel.JointPoint.R);
-        measurement.K.z = (measurement.P.z + VNectModel.JointPoint.Q) / (measurement.P.z + VNectModel.JointPoint.Q + VNectModel.JointPoint.R);
-        measurement.P.x = VNectModel.JointPoint.R * (measurement.P.x + VNectModel.JointPoint.Q) / (VNectModel.JointPoint.R + measurement.P.x + VNectModel.JointPoint.Q);
-        measurement.P.y = VNectModel.JointPoint.R * (measurement.P.y + VNectModel.JointPoint.Q) / (VNectModel.JointPoint.R + measurement.P.y + VNectModel.JointPoint.Q);
-        measurement.P.z = VNectModel.JointPoint.R * (measurement.P.z + VNectModel.JointPoint.Q) / (VNectModel.JointPoint.R + measurement.P.z + VNectModel.JointPoint.Q);
+        measurement.K.x = (measurement.P.x + KalmanParamQ) / (measurement.P.x + KalmanParamQ + KalmanParamR);
+        measurement.K.y = (measurement.P.y + KalmanParamQ) / (measurement.P.y + KalmanParamQ + KalmanParamR);
+        measurement.K.z = (measurement.P.z + KalmanParamQ) / (measurement.P.z + KalmanParamQ + KalmanParamR);
+        measurement.P.x = KalmanParamR * (measurement.P.x + KalmanParamQ) / (KalmanParamR + measurement.P.x + KalmanParamQ);
+        measurement.P.y = KalmanParamR * (measurement.P.y + KalmanParamQ) / (KalmanParamR + measurement.P.y + KalmanParamQ);
+        measurement.P.z = KalmanParamR * (measurement.P.z + KalmanParamQ) / (KalmanParamR + measurement.P.z + KalmanParamQ);
     }
 }
