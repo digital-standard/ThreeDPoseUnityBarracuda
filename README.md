@@ -53,7 +53,10 @@ the accuracy got better than pre model.
    
 ・Skip On Drop</br>
    If "Skip On Drop" in Video Player checked, VideoPlayer is allowed to skip frames to catch up with current time.<br>
-   ![unity_set_size_of_video.PNG](unity_set_size_of_video.PNG)
+
+## License
+Non-commercial use only.Please use it freely for hobbies and research. When redistributing, it would be appreciated if you could enter a credit (Digital-Standard Co., Ltd.).Please contact us if you want to use it for commercial purposes.
+
    
     
    
