@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: F00_000_Hair_00_HAIR_02
+  m_Shader: {fileID: 4800000, guid: 1a97144e4ad27a04aafd70f7b915cedb, type: 3}
+  m_ShaderKeywords: _ALPHATEST_ON _NORMALMAP
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 2450
+  stringTagMap:
+    RenderType: TransparentCutout
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 8af6c583fce05464cbeabc7336ae1d62, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 2800000, guid: ccfafb8f38fcc024db206df5d8c1c0f1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 4818c0d25dfd7bb43a2f835df3f2e331, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OutlineWidthTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ReceiveShadowTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RimTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShadeTexture:
+        m_Texture: {fileID: 2800000, guid: 4818c0d25dfd7bb43a2f835df3f2e331, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShadingGradeTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SphereAdd:
+        m_Texture: {fileID: 2800000, guid: 54aae7a3a19ff5541a10c0499c235f7e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _UvAnimMaskTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BlendMode: 1
+    - _BumpScale: 1
+    - _CullMode: 0
+    - _Cutoff: 0.5
+    - _DebugMode: 0
+    - _DstBlend: 0
+    - _IndirectLightIntensity: 0.1
+    - _LightColorAttenuation: 0
+    - _MToonVersion: 32
+    - _OutlineColorMode: 0
+    - _OutlineCullMode: 1
+    - _OutlineLightingMix: 1
+    - _OutlineScaledMaxDistance: 2.71
+    - _OutlineWidth: 0
+    - _OutlineWidthMode: 0
+    - _ReceiveShadowRate: 1
+    - _RimFresnelPower: 1
+    - _RimLift: 0
+    - _RimLightingMix: 0
+    - _ShadeShift: -0.3
+    - _ShadeToony: 0
+    - _ShadingGradeRate: 1
+    - _SrcBlend: 1
+    - _UvAnimRotation: 0
+    - _UvAnimScrollX: 0
+    - _UvAnimScrollY: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 0.93329835, g: 0.29305568, b: 0.335929, a: 1}
+    - _EmissionColor: {r: 0.6171219, g: 0.18572511, b: 0.06418066, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RimColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ShadeColor: {r: 0.7531513, g: 0.19130044, b: 0.5613627, a: 1}
