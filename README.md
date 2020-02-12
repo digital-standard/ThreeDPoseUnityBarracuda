@@ -43,13 +43,20 @@ GPU: GeForce RTX2060 SUPER ⇒ 30 FPS
     There are two types of avatar in this Scene.</br>
     You can change the avatar easily in inspector view.</br>
     Firstly activate Gameobject named as "Tait" and deactivate "unitychan".</br>
-    Secondly drag the Gameobject and drop it to "V Nect Model" of "BarracudaRunner".<br>
-    ![unity_set_anoter_avater_to_obj.PNG](unity_set_anoter_avater_to_obj.PNG)
+    Secondly drag the Gameobject and drop it to "V Nect Model" of "BarracudaRunner".</br>
+    ![unity_set_anoter_avater_to_obj.PNG](unity_set_anoter_avater_to_obj.PNG)</br>
+    
+    *To determin direction of the face of avatar, a gameobject which works as nose has been added in those of avatars.
+     So if you would like to adopt your original avatar, please add the nose referencing the code.
     
 ・Set size of video screen</br>
    The size of video screen affect the size of avatar.</br>
    You can set the number in "Video Background Scale" of "MainTexture". The range is 0.1 ~ 1. Default value is 1.<br>
-   ![unity_set_size_of_video.PNG](unity_set_size_of_video.PNG)
+   ![unity_set_size_of_video.PNG](unity_set_size_of_video.PNG)</br>
+   
+・Use Web Camera
+   By checking "Use Web Cam", you can change the input images.</br>
+   ![unity_use_web_cam.PNG](unity_use_web_cam.PNG)</br>
    
 ・Skip On Drop</br>
    If "Skip On Drop" in Video Player checked, VideoPlayer is allowed to skip frames to catch up with current time.<br>
