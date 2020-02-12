@@ -53,6 +53,11 @@ GPU: GeForce RTX2060 SUPER ⇒ 30 FPS
    
 ・Skip On Drop</br>
    If "Skip On Drop" in Video Player checked, VideoPlayer is allowed to skip frames to catch up with current time.<br>
+   
+## Info
+・Record</br>
+If you want to record the motion, the following package might be suitable.</br>
+https://github.com/zizai-inc/EasyMotionRecorder</br>
 
 ## License
 Non-commercial use only.Please use it freely for hobbies and research. When redistributing, it would be appreciated if you could enter a credit (Digital-Standard Co., Ltd.).Please contact us if you want to use it for commercial purposes.
