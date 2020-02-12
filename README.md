@@ -8,24 +8,24 @@ ThreeDPoseUnityBarracuda is a sample source which read the onnx by Barracuda and
 the accuracy got better than pre model.
 ![preview_capture.gif](preview_capture.gif)
 
+## Performance
+GPU: GeForce RTX2060 SUPER ⇒ 30 FPS
+
 ## Install and Tutorial
 ### Download and put files
-1. Download/Clone the folders named as "Assets" and "Packages" into your Unity Project.
+1. Put the folders named ad "Assets" and "Packages" in your Unity Project.
 
-2. Replace or add those of folders downloaded in your Unity Project.
-
-3. Download onnx from our home page by clicking following URL in our HP.</br>
+2. Download onnx from our home page by clicking following URL in our HP.</br>
    http://digital-standard.com/threedpose/models/Resnet34_3inputs_448x448_20200212.onnx
    
-4. put the onnx under Assets/Scripts/Model/
-   
 ### Settings in Unity Inspector
-1. Open the Unity project with Unity Editor.
+1. Open the Unity project with Unity Editor and put the onnx file in /Assets/Scripts/Model/ 
+   In this action, the onnx file is being converted into NNModel type of Barracuda automatically.
 
 2. Open "SampleScene" in "Scene" folder.</br>
-   if dialog shows up, please choose "Don't save".</br></br>
+   If dialog shows up, please choose "Don't save".</br></br>
 3. Set model</br>
-   drag the onnx you put before in Assets/Scripts/Model/ 
+   Drag the NNModel you put before in Assets/Scripts/Model/ 
    and drop it to "NN Model" in Gameobject named as "BarracudaRunner" in Inspector view.
    ![unity_inspector.PNG](unity_inspector.PNG)
    
@@ -36,7 +36,7 @@ the accuracy got better than pre model.
 ## ※Option<br>
 ・ Choose Video</br>
    You can choose the target video.</br>
-   put the video you choose in Assets/Video/, and then drag the file and drop it to Video Clip of "Video Player".<br>
+   Put the video you choose in Assets/Video/, and then drag the file and drop it to Video Clip of "Video Player".<br>
    ![unity_chooseVideo.PNG](unity_chooseVideo.PNG)
    
 ・Choose Avatar</br>
@@ -58,5 +58,6 @@ the accuracy got better than pre model.
 Non-commercial use only.Please use it freely for hobbies and research. When redistributing, it would be appreciated if you could enter a credit (Digital-Standard Co., Ltd.).Please contact us if you want to use it for commercial purposes.
 
    
-    
+
+
    
