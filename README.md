@@ -1,13 +1,12 @@
 # ThreeDPoseUnityBarracuda
 Unity sample of 3D pose estimation using Barracuda
 
-# Now in preparation
-
 ## Outline
 ThreeDPoseUnityBarracuda is a sample source which read the onnx by Barracuda and do threeD pose estimation on Unity.
-the accuracy got better than pre model.
+the accuracy got better than pre model. </br>
+*Be aware of that the target should be only one person. It does not work for multi target. </br></br>
+This sample lets the avatar named as "Unity chan" behaves same as the man on real time by estimating the 3D positions on the movie.</br>
 
-This sample let the avatar named as "Unity chan" behaves same as the man on real time by estimating the 3D positions on the movie.</br>
 ![preview_daring.gif](Assets/StreamingAssets/ScreenShots/preview_daring.gif)</br>
 ![preview_capture_v2.gif](Assets/StreamingAssets/ScreenShots/preview_capture_v2.gif)</br></br>
 
