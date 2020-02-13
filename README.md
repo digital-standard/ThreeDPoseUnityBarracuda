@@ -8,19 +8,21 @@ ThreeDPoseUnityBarracuda is a sample source which read the onnx by Barracuda and
 the accuracy got better than pre model.
 
 This sample let the avatar named as "Unity chan" behaves same as the man on real time by estimating the 3D positions on the movie.</br>
+![preview_daring.gif](preview_daring.gif)</br>
 ![preview_capture_v2.gif](preview_capture_v2.gif)</br></br>
+
 We use Barracuda 0.4 to load onnx.</br>
-By updating the version to 0.5, the speed seemed to get slower. </br>
+By updating the version to 0.5, it seems like the speed get slower. </br>
 Now we are still trying 0.5 version. </br>
 </br>
-## Performance
+## Performance Report
 ### GPU </br>
-GeForce RTX2060 SUPER ⇒ 30 FPS </br>
-GeForce GTX1070 ⇒ 20 FPS </br>
+GeForce RTX2060 SUPER ⇒ About 30 FPS </br>
+GeForce GTX1070 ⇒ About 20 FPS </br>
 
 ## Install and Tutorial
 ### Download and put files
-1. ~~Put the folders named ad "Assets" and "Packages" in your Unity Project.~~
+1. ~~Put the folders named ad "Assets" and "Packages" in your Unity Project.~~ </br>
    Now we have added project settings to the code. So please just download/clone them to your local PC.
 
 2. Download onnx from our home page by clicking following URL in our HP.</br>
@@ -39,9 +41,22 @@ GeForce GTX1070 ⇒ 20 FPS </br>
    
 4. Start Debug</br>
    Now you can see real time motion capture by starting Debug.
-   ![unity_debug..PNG](unity_debug..PNG)
+   ![unity_wiper_too_big.PNG](unity_wiper_too_big.PNG) </br>
    
-## ※Option<br>
+   But sometimes the avatar get out of the box like above screen shot.<br>
+
+5. Arrange Size</br>
+   In this case, you should arrange the number in "Video Background Scale" of "MainTexture". </br>
+   The range is 0.1 ~ 1 and the default value is 1.<br>
+   Here please set this 0.8.</br>
+   ![unity_arrange_size.PNG](unity_arrange_size.PNG)</br>
+   
+6. Start Debug anain<br>
+   As you can see, the size of the avater fit the box.
+   ![unity_wiper_size_suit.PNG](unity_wiper_size_suit.PNG)</br>
+   
+   
+## ※Other Option<br>
 ・ Choose Video</br>
    You can choose the target video.</br>
    Put the video you choose in Assets/Video/, and then drag the file and drop it to Video Clip of "Video Player".<br>
@@ -56,12 +71,7 @@ GeForce GTX1070 ⇒ 20 FPS </br>
     
     *To determin direction of the face of avatar, a gameobject which works as nose has been added in those of avatars.
      So if you would like to adopt your original avatar, please add the nose referencing the code.
-    
-・Set size of video screen</br>
-   The size of video screen affect the size of avatar.</br>
-   You can set the number in "Video Background Scale" of "MainTexture". The range is 0.1 ~ 1. Default value is 1.<br>
-   ![unity_set_size_of_video.PNG](unity_set_size_of_video.PNG)</br>
-   
+     
 ・Use Web Camera
    By checking "Use Web Cam", you can change the input images.</br>
    ![unity_use_web_cam.PNG](unity_use_web_cam.PNG)</br>
@@ -75,7 +85,10 @@ If you want to record the motion, the following package might be suitable.</br>
 https://github.com/zizai-inc/EasyMotionRecorder</br>
 
 ## License
-Non-commercial use only.Please use it freely for hobbies and research. When redistributing, it would be appreciated if you could enter a credit (Digital-Standard Co., Ltd.).Please contact us if you want to use it for commercial purposes.
+・Non-commercial use only.Please use it freely for hobbies and research. When redistributing, it would be appreciated if you could enter a credit (Digital-Standard Co., Ltd.).Please contact us if you want to use it for commercial purposes.</br>
+
+・The videos named as "Action_with_wiper.mp4" and "onegai_darling.mp4" contained in this code are not copyright free.
+  So you should not use those of files in other places without permission.
 
    
 
