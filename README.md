@@ -88,9 +88,11 @@ https://github.com/zizai-inc/EasyMotionRecorder</br>
 
 ・The videos named as "Action_with_wiper.mp4"(
 original video: https://www.youtube.com/watch?v=C9VtSRiEM7s) and "onegai_darling.mp4"(original video: https://www.youtube.com/watch?v=tmsK8985dyk) contained in this code are not copyright free.
-  So you should not use those of files in other places without permission.
-
-   
+  So you should not use those of files in other places without permission.</br></br>
+  
+## Contact</br>
+If you have any questions, please feel free to contact us from following URL.</br>
+https://digital-standard.com/contact/
 
 
    
