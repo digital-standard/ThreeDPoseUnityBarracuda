@@ -92,7 +92,8 @@ original video: https://www.youtube.com/watch?v=C9VtSRiEM7s) and "onegai_darling
   
 ## Contact</br>
 If you have any questions, please feel free to contact us from following URL.</br>
-https://digital-standard.com/contact/
+Contact form:  https://digital-standard.com/contact/ </br>
+E-Mail: info@digital-standard.com </br>
 
 
    
