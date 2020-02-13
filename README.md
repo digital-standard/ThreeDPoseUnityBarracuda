@@ -8,8 +8,8 @@ ThreeDPoseUnityBarracuda is a sample source which read the onnx by Barracuda and
 the accuracy got better than pre model.
 
 This sample let the avatar named as "Unity chan" behaves same as the man on real time by estimating the 3D positions on the movie.</br>
-![preview_daring.gif](preview_daring.gif)</br>
-![preview_capture_v2.gif](preview_capture_v2.gif)</br></br>
+![preview_daring.gif](Assets/StreamingAssets/ScreenShots/preview_daring.gif)</br>
+![preview_capture_v2.gif](Assets/StreamingAssets/ScreenShots/preview_capture_v2.gif)</br></br>
 
 We use Barracuda 0.4 to load onnx.</br>
 By updating the version to 0.5, it seems like the speed get slower. </br>
@@ -37,11 +37,11 @@ GeForce GTX1070 ⇒ About 20 FPS </br>
 3. Set model</br>
    Drag the NNModel you put before in Assets/Scripts/Model/ 
    and drop it to "NN Model" in Gameobject named as "BarracudaRunner" in Inspector view.
-   ![unity_inspector.PNG](unity_inspector.PNG)
+   ![unity_inspector.PNG](Assets/StreamingAssets/ScreenShots/unity_inspector.PNG)
    
 4. Start Debug</br>
    Now you can see real time motion capture by starting Debug.
-   ![unity_wiper_too_big.PNG](unity_wiper_too_big.PNG) </br>
+   ![unity_wiper_too_big.PNG](Assets/StreamingAssets/ScreenShots/unity_wiper_too_big.PNG) </br>
    
    But sometimes the avatar get out of the box like above screen shot.<br>
 
@@ -49,32 +49,32 @@ GeForce GTX1070 ⇒ About 20 FPS </br>
    In this case, you should arrange the number in "Video Background Scale" of "MainTexture". </br>
    The range is 0.1 ~ 1 and the default value is 1.<br>
    Here please set this 0.8.</br>
-   ![unity_arrange_size.PNG](unity_arrange_size.PNG)</br>
+   ![unity_arrange_size.PNG](Assets/StreamingAssets/ScreenShots/unity_arrange_size.PNG)</br>
    
 6. Start Debug anain<br>
    As you can see, the size of the avater fit the box.
-   ![unity_wiper_size_suit.PNG](unity_wiper_size_suit.PNG)</br>
+   ![unity_wiper_size_suit.PNG](Assets/StreamingAssets/ScreenShots/unity_wiper_size_suit.PNG)</br>
    
    
 ## ※Other Option<br>
 ・ Choose Video</br>
    You can choose the target video.</br>
    Put the video you choose in Assets/Video/, and then drag the file and drop it to Video Clip of "Video Player".<br>
-   ![unity_chooseVideo.PNG](unity_chooseVideo.PNG)
+   ![unity_chooseVideo.PNG](Assets/StreamingAssets/ScreenShots/unity_chooseVideo.PNG)
    
 ・Choose Avatar</br>
     There are two types of avatar in this Scene.</br>
     You can change the avatar easily in inspector view.</br>
     Firstly activate Gameobject named as "Tait" and deactivate "unitychan".</br>
     Secondly drag the Gameobject and drop it to "V Nect Model" of "BarracudaRunner".</br>
-    ![unity_set_anoter_avater_to_obj.PNG](unity_set_anoter_avater_to_obj.PNG)</br>
+    ![unity_set_anoter_avater_to_obj.PNG](Assets/StreamingAssets/ScreenShots/unity_set_anoter_avater_to_obj.PNG)</br>
     
     *To determin direction of the face of avatar, a gameobject which works as nose has been added in those of avatars.
      So if you would like to adopt your original avatar, please add the nose referencing the code.
      
 ・Use Web Camera
    By checking "Use Web Cam", you can change the input images.</br>
-   ![unity_use_web_cam.PNG](unity_use_web_cam.PNG)</br>
+   ![unity_use_web_cam.PNG](Assets/StreamingAssets/ScreenShots/unity_use_web_cam.PNG)</br>
    
 ・Skip On Drop</br>
    If "Skip On Drop" in Video Player checked, VideoPlayer is allowed to skip frames to catch up with current time.<br>
