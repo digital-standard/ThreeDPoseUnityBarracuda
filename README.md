@@ -10,6 +10,8 @@ This sample lets the avatar named as "Unity chan" behaves same as the man on rea
 ![preview_daring.gif](Assets/StreamingAssets/ScreenShots/preview_daring.gif)</br>
 ![preview_capture_v2.gif](Assets/StreamingAssets/ScreenShots/preview_capture_v2.gif)</br></br>
 
+
+Created with Unity ver 2019.2.12f1.</br>
 We use Barracuda 0.4 to load onnx.</br>
 By updating the version to 0.5, it seems like the speed get slower. </br>
 Now we are still trying 0.5 version. </br>
