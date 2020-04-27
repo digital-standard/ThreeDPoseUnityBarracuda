@@ -77,7 +77,15 @@ GeForce GTX1070 ⇒ About 20 FPS </br>
    
 ・Skip On Drop</br>
    If "Skip On Drop" in Video Player checked, VideoPlayer is allowed to skip frames to catch up with current time.<br>
-   
+
+## How to make a good estimate?
+  ![how_to_make_good_estimate.png](Assets/StreamingAssets/ScreenShots/how_to_make_good_estimate.png)</br>
+
+The frame displayed in the upper left corner (InputTexture) is the input image to the trained model.
+Make sure that the whole body fits in this frame.
+It is not possible to correctly estimate if the limbs stick out due to the edges of this frame. Since the program is performed assuming that the whole body is always in the frame, the error will increase if it exceeds the limit.
+Also, the background is as simple as possible, and pants are better than skirts.
+
 ## Info
 ・Record</br>
 If you want to record the motion, the following package might be suitable.</br>
