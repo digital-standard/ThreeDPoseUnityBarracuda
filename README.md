@@ -12,9 +12,7 @@ This sample lets the avatar named as "Unity chan" behaves same as the man on rea
 
 
 Created with Unity ver 2019.2.12f1.</br>
-We use Barracuda 0.4 to load onnx.</br>
-By updating the version to 0.5, it seems like the speed get slower. </br>
-Now we are still trying 0.5 version. </br>
+We use Barracuda 0.6.3 to load onnx.</br>
 </br>
 ## Performance Report
 ### GPU </br>
@@ -27,7 +25,7 @@ GeForce GTX1070 ⇒ About 20 FPS </br>
    Now we have added project settings to the code. So please just download/clone them to your local PC.
 
 2. Download onnx from our home page by clicking following URL in our HP.</br>
-   http://digital-standard.com/threedpose/models/Resnet34_3inputs_448x448_20200212.onnx
+   http://digital-standard.com/threedpose/models/Resnet34_3inputs_448x448_20200417.onnx
    
 ### Settings in Unity Inspector
 1. Open the Unity project with Unity Editor and put the onnx file in /Assets/Scripts/Model/ 
