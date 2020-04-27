@@ -176,25 +176,34 @@ public class VNectBarracudaRunner : MonoBehaviour
         Lock = false;
     }
 
+    private const string inputName_1 = "input.1";
+    private const string inputName_2 = "input.4";
+    private const string inputName_3 = "input.7";
+    /*
+    private const string inputName_1 = "0";
+    private const string inputName_2 = "1";
+    private const string inputName_3 = "2";
+    */
+
     private void UpdateVNectModel()
     {
         input = new Tensor(videoCapture.MainTexture);
-
-        if (inputs["1"] == null)
+        if (inputs[inputName_1] == null)
         {
-            inputs["0"] = input;
-            inputs["1"] = input;
-            inputs["2"] = input;
+            inputs[inputName_1] = input;
+            inputs[inputName_2] = new Tensor(videoCapture.MainTexture);
+            inputs[inputName_3] = new Tensor(videoCapture.MainTexture);
         }
         else
         {
-            inputs["2"].Dispose();
-            inputs["2"] = inputs["1"];
-            inputs["1"] = inputs["0"];
-            inputs["0"] = input;
+            inputs[inputName_3].Dispose();
+
+            inputs[inputName_3] = inputs[inputName_2];
+            inputs[inputName_2] = inputs[inputName_1];
+            inputs[inputName_1] = input;
         }
 
-        StartCoroutine(ExecuteModel());
+        StartCoroutine(ExecuteModelAsync());
     }
 
     /// <summary>
@@ -202,10 +211,10 @@ public class VNectBarracudaRunner : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     Tensor input = new Tensor();
-    Dictionary<string, Tensor> inputs = new Dictionary<string, Tensor>() { { "0", null }, { "1", null }, { "2", null }, };
+    Dictionary<string, Tensor> inputs = new Dictionary<string, Tensor>() { { inputName_1, null }, { inputName_2, null }, { inputName_3, null }, };
     Tensor[] b_outputs = new Tensor[4];
 
-    private IEnumerator ExecuteModel()
+    private IEnumerator ExecuteModelAsync()
     {
         // Create input and Execute model
         yield return _worker.ExecuteAsync(inputs);
@@ -213,7 +222,7 @@ public class VNectBarracudaRunner : MonoBehaviour
         // Get outputs
         for (var i = 2; i < _model.outputs.Count; i++)
         {
-            b_outputs[i] = _worker.Peek(_model.outputs[i]);
+            b_outputs[i] = _worker.PeekOutput(_model.outputs[i]);
         }
 
         // Get data from outputs

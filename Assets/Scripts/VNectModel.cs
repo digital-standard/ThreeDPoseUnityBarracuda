@@ -75,6 +75,7 @@ public class VNectModel : MonoBehaviour
         public Quaternion InverseRotation;
 
         public JointPoint Child = null;
+        public JointPoint Parent = null;
 
         // For Kalman filter
         public Vector3 P = new Vector3();
@@ -183,10 +184,12 @@ public class VNectModel : MonoBehaviour
         // Right Arm
         jointPoints[PositionIndex.rShldrBend.Int()].Child = jointPoints[PositionIndex.rForearmBend.Int()];
         jointPoints[PositionIndex.rForearmBend.Int()].Child = jointPoints[PositionIndex.rHand.Int()];
+        jointPoints[PositionIndex.rForearmBend.Int()].Parent = jointPoints[PositionIndex.rShldrBend.Int()];
 
         // Left Arm
         jointPoints[PositionIndex.lShldrBend.Int()].Child = jointPoints[PositionIndex.lForearmBend.Int()];
         jointPoints[PositionIndex.lForearmBend.Int()].Child = jointPoints[PositionIndex.lHand.Int()];
+        jointPoints[PositionIndex.lForearmBend.Int()].Parent = jointPoints[PositionIndex.lShldrBend.Int()];
 
         // Fase
 
@@ -194,11 +197,13 @@ public class VNectModel : MonoBehaviour
         jointPoints[PositionIndex.rThighBend.Int()].Child = jointPoints[PositionIndex.rShin.Int()];
         jointPoints[PositionIndex.rShin.Int()].Child = jointPoints[PositionIndex.rFoot.Int()];
         jointPoints[PositionIndex.rFoot.Int()].Child = jointPoints[PositionIndex.rToe.Int()];
+        jointPoints[PositionIndex.rFoot.Int()].Parent = jointPoints[PositionIndex.rShin.Int()];
 
         // Left Leg
         jointPoints[PositionIndex.lThighBend.Int()].Child = jointPoints[PositionIndex.lShin.Int()];
         jointPoints[PositionIndex.lShin.Int()].Child = jointPoints[PositionIndex.lFoot.Int()];
         jointPoints[PositionIndex.lFoot.Int()].Child = jointPoints[PositionIndex.lToe.Int()];
+        jointPoints[PositionIndex.lFoot.Int()].Parent = jointPoints[PositionIndex.lShin.Int()];
 
         // etc
         jointPoints[PositionIndex.spine.Int()].Child = jointPoints[PositionIndex.neck.Int()];
@@ -333,7 +338,12 @@ public class VNectModel : MonoBehaviour
         // rotate each of bones
         foreach (var jointPoint in jointPoints)
         {
-            if (jointPoint.Child != null)
+            if (jointPoint.Parent != null)
+            {
+                var fv = jointPoint.Parent.Pos3D - jointPoint.Pos3D;
+                jointPoint.Transform.rotation = Quaternion.LookRotation(jointPoint.Pos3D - jointPoint.Child.Pos3D, fv) * jointPoint.InverseRotation;
+            }
+            else if (jointPoint.Child != null)
             {
                 jointPoint.Transform.rotation = Quaternion.LookRotation(jointPoint.Pos3D - jointPoint.Child.Pos3D, forward) * jointPoint.InverseRotation;
             }
