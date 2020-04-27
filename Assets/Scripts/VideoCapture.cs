@@ -4,11 +4,13 @@ using UnityEngine.Video;
 
 public class VideoCapture : MonoBehaviour
 {
+    public GameObject InputTexture;
     public RawImage VideoScreen;
     public GameObject VideoBackground;
     public float VideoBackgroundScale;
     public LayerMask _layer;
     public bool UseWebCam = true;
+    public int WebCamIndex = 0;
     public VideoPlayer VideoPlayer;
 
     private WebCamTexture webCamTexture;
@@ -38,7 +40,12 @@ public class VideoCapture : MonoBehaviour
     private void CameraPlayStart()
     {
         WebCamDevice[] devices = WebCamTexture.devices;
-        webCamTexture = new WebCamTexture(devices[0].name);
+        if(devices.Length <= WebCamIndex)
+        {
+            WebCamIndex = 0;
+        }
+        
+        webCamTexture = new WebCamTexture(devices[WebCamIndex].name);
 
         var sd = VideoScreen.GetComponent<RectTransform>();
         VideoScreen.texture = webCamTexture;
@@ -113,5 +120,6 @@ public class VideoCapture : MonoBehaviour
         };
 
         camera.targetTexture = MainTexture;
+        if (InputTexture.activeSelf) InputTexture.GetComponent<Renderer>().material.mainTexture = MainTexture;
     }
 }
