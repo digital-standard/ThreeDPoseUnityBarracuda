@@ -92,15 +92,15 @@ If you want to record the motion, the following package might be suitable.</br>
 https://github.com/zizai-inc/EasyMotionRecorder</br>
 
 ## License
-・Non-commercial use.
-   Please use it freely for hobbies and research. 
-   When redistributing, it would be appreciated if you could enter a credit (Digital-  Standard Co., Ltd.).
-・Commercial use.
+・Non-commercial use.</br>
+   Please use it freely for hobbies and research. </br>
+   When redistributing, it would be appreciated if you could enter a credit (Digital-  Standard Co., Ltd.).</br></br>
+・Commercial use.</br>
    ・In the case of developping application including free application for advertising, it costs $500 per developer.
-     About complicated case, please contact us.
-   ・In the case of using this on cloud server, please contact us.
+     About complicated case, please contact us.</br>
+   ・In the case of using this on cloud server, please contact us.</br>
    ・In the case of creating motion or deliverng the video, and the earnings surpass $500 or there is the expectation,
-     it costs $500. Otherwise it is for free.
+     it costs $500. Otherwise it is for free.</br></br>
 
 ・The videos named as "Action_with_wiper.mp4"(
 original video: https://www.youtube.com/watch?v=C9VtSRiEM7s) and "onegai_darling.mp4"(original video: https://www.youtube.com/watch?v=tmsK8985dyk) contained in this code are not copyright free.
