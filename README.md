@@ -12,12 +12,13 @@ This sample lets the avatar named as "Unity chan" behaves same as the man on rea
 
 
 Created with Unity ver 2019.2.12f1.</br>
-We use Barracuda 0.6.3 to load onnx.</br>
+We use Barracuda 0.7.1 to load onnx.</br>
 </br>
 ## Performance Report
 ### GPU </br>
 GeForce RTX2060 SUPER ⇒ About 30 FPS </br>
 GeForce GTX1070 ⇒ About 20 FPS </br>
+<span style="color: red; ">※Without GPU, it does not word fine basically</span>
 
 ## Install and Tutorial
 ### Download and put files
@@ -25,7 +26,7 @@ GeForce GTX1070 ⇒ About 20 FPS </br>
    Now we have added project settings to the code. So please just download/clone them to your local PC.
 
 2. Download onnx from our home page by clicking following URL in our HP.</br>
-   http://digital-standard.com/threedpose/models/Resnet34_3inputs_448x448_20200417.onnx
+   http://digital-standard.com/threedpose/models/Resnet34_3inputs_448x448_20200604.onnx
    
 ### Settings in Unity Inspector
 1. Open the Unity project with Unity Editor and put the onnx file in /Assets/Scripts/Model/ 
@@ -40,11 +41,19 @@ GeForce GTX1070 ⇒ About 20 FPS </br>
    
 4. Start Debug</br>
    Now you can see real time motion capture by starting Debug.
-   ![unity_wiper_too_big.PNG](Assets/StreamingAssets/ScreenShots/unity_wiper_too_big.PNG) </br>
+   ![unity_wiper_too_big.PNG](Assets/StreamingAssets/ScreenShots/unity_wiper_too_big.PNG) </br><br>
    
-   But sometimes the avatar get out of the box like above screen shot.<br>
+   But it would take about 15 secounds to load model while video has already started playing.<br>
+   ※It depends on machine how much time you need to wait for loading the model.
+   ![unity_wiper_no_model.PNG](Assets/StreamingAssets/ScreenShots/unity_wiper_no_model.PNG)<br>
+   You can avoid this problem by stopping playing video till it loads model completely.<br>
+   Please make playback speed of video player 0 to wair for loading the model.<br>
+   ![unity_debug_video_playback_speed.PNG](Assets/StreamingAssets/ScreenShots/unity_debug_video_playback_speed.PNG)<br>
+
+   And plase make the value 1 to restart the video after loading the model.<br><br>
 
 5. Arrange Size</br>
+   Sometimes the avatar get out of the box like above screen shot.<br>
    In this case, you should arrange the number in "Video Background Scale" of "MainTexture". </br>
    The range is 0.1 ~ 1 and the default value is 1.<br>
    Here please set this 0.8.</br>
