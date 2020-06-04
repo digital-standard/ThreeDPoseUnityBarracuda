@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.unity.barracuda": "0.6.3-preview",
+    "com.unity.barracuda": "0.7.1-preview",
     "com.unity.package-manager-ui": "2.2.0",
     "com.unity.test-framework": "1.0.18",
     "com.unity.textmeshpro": "2.0.1",
