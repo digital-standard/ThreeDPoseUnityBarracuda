@@ -18,7 +18,7 @@ We use Barracuda 0.7.1 to load onnx.</br>
 ### GPU </br>
 GeForce RTX2060 SUPER ⇒ About 30 FPS </br>
 GeForce GTX1070 ⇒ About 20 FPS </br>
-<font color="Red">**※Without GPU, it does not word fine basically**</font>
+<font color="Red">**※Without GPU, it does not work fine basically**</font>
 
 ## Install and Tutorial
 ### Download and put files
