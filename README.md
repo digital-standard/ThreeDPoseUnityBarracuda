@@ -18,7 +18,7 @@ We use Barracuda 0.7.1 to load onnx.</br>
 ### GPU </br>
 GeForce RTX2060 SUPER ⇒ About 30 FPS </br>
 GeForce GTX1070 ⇒ About 20 FPS </br>
-<span style="color: red; ">※Without GPU, it does not word fine basically</span>
+<font color="Red">**※Without GPU, it does not word fine basically**</font>
 
 ## Install and Tutorial
 ### Download and put files
@@ -45,7 +45,7 @@ GeForce GTX1070 ⇒ About 20 FPS </br>
    
    But it would take about 15 secounds to load model while video has already started playing.<br>
    ※It depends on machine how much time you need to wait for loading the model.
-   ![unity_wiper_no_model.PNG](Assets/StreamingAssets/ScreenShots/unity_wiper_no_model.PNG)<br>
+   ![unity_wiper_no_model.PNG](Assets/StreamingAssets/ScreenShots/unity_wiper_no_model.PNG)<br><br>
    You can avoid this problem by stopping playing video till it loads model completely.<br>
    Please make playback speed of video player 0 to wair for loading the model.<br>
    ![unity_debug_video_playback_speed.PNG](Assets/StreamingAssets/ScreenShots/unity_debug_video_playback_speed.PNG)<br>
