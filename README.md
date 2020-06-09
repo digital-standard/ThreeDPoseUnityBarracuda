@@ -26,7 +26,7 @@ GeForce GTX1070 ⇒ About 20 FPS </br>
    Now we have added project settings to the code. So please just download/clone them to your local PC.
 
 2. Download onnx from our home page by clicking following URL in our HP.</br>
-   http://digital-standard.com/threedpose/models/Resnet34_3inputs_448x448_20200417.onnx
+   http://digital-standard.com/threedpose/models/Resnet34_3inputs_448x448_20200609.onnx
    
 ### Settings in Unity Inspector
 1. Open the Unity project with Unity Editor and put the onnx file in /Assets/Scripts/Model/ 
