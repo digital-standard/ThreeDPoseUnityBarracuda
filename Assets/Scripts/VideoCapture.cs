@@ -111,7 +111,7 @@ public class VideoCapture : MonoBehaviour
         camera.allowMSAA = false;
         camera.allowHDR = false;
 
-        MainTexture = new RenderTexture(bgWidth, bgHeight, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB)
+        MainTexture = new RenderTexture(bgWidth, bgHeight, 0, RenderTextureFormat.RGB565, RenderTextureReadWrite.sRGB)
         {
             useMipMap = false,
             autoGenerateMips = false,

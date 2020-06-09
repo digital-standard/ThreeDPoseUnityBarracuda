@@ -14,7 +14,7 @@ public class VNectBarracudaRunner : MonoBehaviour
     /// </summary>
     public NNModel NNModel;
 
-    public BarracudaWorkerFactory.Type WorkerType = BarracudaWorkerFactory.Type.ComputePrecompiled;
+    public WorkerFactory.Type WorkerType = WorkerFactory.Type.Auto;
     public bool Verbose = true;
 
     public VNectModel VNectModel;
@@ -132,6 +132,11 @@ public class VNectBarracudaRunner : MonoBehaviour
     /// </summary>
     public float LowPassParam;
 
+    public Text Msg;
+    public float WaitTimeModelLoad = 10f;
+    private float Countdown = 0;
+    public Texture2D InitImg;
+
     private void Start()
     {
         // Initialize 
@@ -155,25 +160,56 @@ public class VNectBarracudaRunner : MonoBehaviour
 
         // Init model
         _model = ModelLoader.Load(NNModel, Verbose);
-        _worker = BarracudaWorkerFactory.CreateWorker(WorkerType, _model, Verbose);
-        StartCoroutine("WaitLoad");
+        _worker = WorkerFactory.CreateWorker(WorkerType, _model, Verbose);
 
-        // Init VNect model
-        jointPoints = VNectModel.Init();
-        // Init VideoCapture
-        videoCapture.Init(InputImageSize, InputImageSize);
+        StartCoroutine("WaitLoad");
 
     }
 
     private void Update()
     {
-        if (!Lock) UpdateVNectModel();
+        if (!Lock)
+        {
+            UpdateVNectModel();
+        }
     }
 
     private IEnumerator WaitLoad()
     {
-        yield return new WaitForSeconds(0.5f);
+        inputs[inputName_1] = new Tensor(InitImg);
+        inputs[inputName_2] = new Tensor(InitImg);
+        inputs[inputName_3] = new Tensor(InitImg);
+
+        // Create input and Execute model
+        yield return _worker.StartManualSchedule(inputs);
+
+        // Get outputs
+        for (var i = 2; i < _model.outputs.Count; i++)
+        {
+            b_outputs[i] = _worker.PeekOutput(_model.outputs[i]);
+        }
+
+        // Get data from outputs
+        offset3D = b_outputs[2].data.Download(b_outputs[2].shape);
+        heatMap3D = b_outputs[3].data.Download(b_outputs[3].shape);
+
+        // Release outputs
+        for (var i = 2; i < b_outputs.Length; i++)
+        {
+            b_outputs[i].Dispose();
+        }
+
+        // Init VNect model
+        jointPoints = VNectModel.Init();
+
+        PredictPose();
+
+        yield return new WaitForSeconds(WaitTimeModelLoad);
+
+        // Init VideoCapture
+        videoCapture.Init(InputImageSize, InputImageSize);
         Lock = false;
+        Msg.gameObject.SetActive(false);
     }
 
     private const string inputName_1 = "input.1";
@@ -217,7 +253,7 @@ public class VNectBarracudaRunner : MonoBehaviour
     private IEnumerator ExecuteModelAsync()
     {
         // Create input and Execute model
-        yield return _worker.ExecuteAsync(inputs);
+        yield return _worker.StartManualSchedule(inputs);
 
         // Get outputs
         for (var i = 2; i < _model.outputs.Count; i++)
@@ -303,8 +339,12 @@ public class VNectBarracudaRunner : MonoBehaviour
         {
             foreach (var jp in jointPoints)
             {
-                jp.Pos3D = jp.PrevPos3D * LowPassParam + jp.Pos3D * (1f - LowPassParam);
-                jp.PrevPos3D = jp.Pos3D;
+                jp.PrevPos3D[0] = jp.Pos3D;
+                for (var i = 1; i < jp.PrevPos3D.Length; i++)
+                {
+                    jp.PrevPos3D[i] = jp.PrevPos3D[i] * LowPassParam + jp.PrevPos3D[i - 1] * (1f - LowPassParam);
+                }
+                jp.Pos3D = jp.PrevPos3D[jp.PrevPos3D.Length - 1];
             }
         }
     }

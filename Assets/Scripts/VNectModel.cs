@@ -65,7 +65,7 @@ public class VNectModel : MonoBehaviour
 
         public Vector3 Pos3D = new Vector3();
         public Vector3 Now3D = new Vector3();
-        public Vector3 PrevPos3D = new Vector3();
+        public Vector3[] PrevPos3D = new Vector3[6];
         public float score3D;
 
         // Bones
