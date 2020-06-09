@@ -11,8 +11,8 @@ This sample lets the avatar named as "Unity chan" behaves same as the man on rea
 ![preview_capture_v2.gif](Assets/StreamingAssets/ScreenShots/preview_capture_v2.gif)</br></br>
 
 
-Created with Unity ver 2019.2.12f1.</br>
-We use Barracuda 0.7.1 to load onnx.</br>
+Created with Unity ver 2019.3.13f1.</br>
+We use Barracuda 1.0.0 to load onnx.</br>
 </br>
 ## Performance Report
 ### GPU </br>
