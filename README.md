@@ -109,10 +109,6 @@ https://github.com/zizai-inc/EasyMotionRecorder</br>
 original video: https://www.youtube.com/watch?v=C9VtSRiEM7s) and "onegai_darling.mp4"(original video: https://www.youtube.com/watch?v=tmsK8985dyk) contained in this code are not copyright free.
   So you should not use those of files in other places without permission.</br></br>
   
-・Unitychan</br>
-We follow the Unity-Chan License Terms.</br>
-https://unity-chan.com/contents/license_en/</br>
-![Light_Frame.png](Assets/StreamingAssets/ScreenShots/Light_Frame.png)</br></br>
    
 ### Commercial use</br>
 ・In the case of developping application including free application for advertising, it costs $500 per developer.
@@ -120,6 +116,11 @@ https://unity-chan.com/contents/license_en/</br>
 ・In the case of using this on cloud server, please contact us.</br>
 ・In the case of creating motion or delivering the video, and the earnings surpass $500 or there is the expectation,
   it costs $500. Otherwise it is for free.</br></br>
+  
+### Unitychan</br>
+We follow the Unity-Chan License Terms.</br>
+https://unity-chan.com/contents/license_en/</br>
+![Light_Frame.png](Assets/StreamingAssets/ScreenShots/Light_Frame.png)</br></br>
   
 ## Contact</br>
 If you have any questions, please feel free to contact us from following URL.</br>
