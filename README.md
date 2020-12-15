@@ -111,11 +111,7 @@ original video: https://www.youtube.com/watch?v=C9VtSRiEM7s) and "onegai_darling
   
    
 ### Commercial use</br>
-・In the case of developping application including free application for advertising, it costs $500 per developer.
-  About complicated case, please contact us.</br>
-・In the case of using this on cloud server, please contact us.</br>
-・In the case of creating motion or delivering the video, and the earnings surpass $500 or there is the expectation,
-  it costs $500. Otherwise it is for free.</br></br>
+・please contact us.</br>
   
 ### Unitychan</br>
 We follow the Unity-Chan License Terms.</br>
