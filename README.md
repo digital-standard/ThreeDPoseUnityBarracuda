@@ -111,7 +111,7 @@ original video: https://www.youtube.com/watch?v=C9VtSRiEM7s) and "onegai_darling
   
    
 ### Commercial use</br>
-・please contact us.</br>
+・Non-commercial use only.</br>
   
 ### Unitychan</br>
 We follow the Unity-Chan License Terms.</br>
