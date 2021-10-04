@@ -1,4 +1,8 @@
 # ThreeDPoseUnityBarracuda
+This project is not maintained. Since it is still old, an error may occur, but please see it as such. Also, the code for ThreeDPoseTracker has been moved to a private repository, so I haven't maintained the code published on Github. We have not answered any questions regarding the code.
+
+このプロジェクトはメンテナンスを行っていません。古いままなのでエラーが発生するかも知れませんがそういう物として見てください。 また、ThreeDPoseTrackerのコードはプライベートのリポジトリに移動したため、Githubに公開しているコードはメンテナンスしていません。 コードに関しての質問も返答しておりません。
+
 Unity sample of 3D pose estimation using Barracuda
 
 ## Outline
@@ -117,11 +121,4 @@ original video: https://www.youtube.com/watch?v=C9VtSRiEM7s) and "onegai_darling
 We follow the Unity-Chan License Terms.</br>
 https://unity-chan.com/contents/license_en/</br>
 ![Light_Frame.png](Assets/StreamingAssets/ScreenShots/Light_Frame.png)</br></br>
-  
-## Contact</br>
-If you have any questions, please feel free to contact us from following URL.</br>
-Contact form:  https://digital-standard.com/contact/ </br>
-E-Mail: info@digital-standard.com </br>
 
-
-   
