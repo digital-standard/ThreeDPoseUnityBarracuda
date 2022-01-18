@@ -306,7 +306,7 @@ public class VNectModel : MonoBehaviour
 
     public void PoseUpdate()
     {
-        // caliculate movement range of z-coordinate from height
+        // calculate movement range of z-coordinate from height
         var t1 = Vector3.Distance(jointPoints[PositionIndex.head.Int()].Pos3D, jointPoints[PositionIndex.neck.Int()].Pos3D);
         var t2 = Vector3.Distance(jointPoints[PositionIndex.neck.Int()].Pos3D, jointPoints[PositionIndex.spine.Int()].Pos3D);
         var pm = (jointPoints[PositionIndex.rThighBend.Int()].Pos3D + jointPoints[PositionIndex.lThighBend.Int()].Pos3D) / 2f;
